@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Line graph </title>
+</head>
+<body>
+<p> create form or something  to select parameters and display graph here itself</p>
+
+<form method="POST" >
+    {% csrf_token %}
+    <label> Row Range </label><input type="text" name="rangeNo">
+    <label> Column </label><input type="text"  name="column">
+    <input type="submit" value="submit">
+</form>
+
+{% autoescape off %}
+  {{ plot_div }}
+  {% endautoescape %}
+
+</body>
+</html>
