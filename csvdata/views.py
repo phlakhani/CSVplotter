@@ -5,6 +5,7 @@ from .forms import UploadFileForm
 # Imaginary function to handle an uploaded file.
 from .dataprocess import handle_uploaded_file, showresult
 
+csvfilename=''
 
 # Create your views here.
 def home(request):
@@ -13,10 +14,12 @@ def home(request):
 
 
 def upload_file(request):
+    global csvfilename
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
             handle_uploaded_file(request.FILES['file'])
+            csvfilename = request.POST['title']
             return redirect('showresult')
     else:
         form = UploadFileForm()
@@ -26,7 +29,8 @@ def resultview(request):
 
     datasets = showresult()
 
-    context= {'totalrecords':datasets['totalrecords'],
+    context= {'filetitle':csvfilename,
+              'totalrecords':datasets['totalrecords'],
               'totalcols':datasets['totalcols'],
               'allcols':datasets['allcols']
               }

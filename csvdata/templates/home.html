@@ -1,7 +1,36 @@
 {% extends 'base.html' %}
 
-{% block content %}
 
-<h2> Upload your CSV files <a href="{% url 'upload_file' %}"> Here </a></h2>
+{% block content1 %}
+
+
+<div class="jumbotron text-center text-primary">
+    <h1>Welcome to CSV plotter !</h1>
+    <h5 > CSV plotter is a simple Visualization tool to help you comprehend your CSV (comma-separated values) data graphically !  </h5>
+    <h5> This tool allows you to render and plot your CSV data into various graphs i.e. Histogram, Bar Graph, Scatter graph,Pie Chart...  </h5>
+</div>
+
+
+<div class="row row justify-content-md-center">
+    <div class="col-md-12 bg-light">
+        <h3 class="mb-3 text-center">You are 5 steps away to see Beautiful grahps from your CSV data ! </h3>
+        <ol>
+            <strong>
+            <li> Upload you CSV file and give appropriate title to it </li>
+            <li> After Submitting, you can see details of your CSV file like total records, columns </li>
+            <li> Next Click at bottom to see Graphs List or choose another CSV file  </li>
+            <li> Select Approriate Graph you want to plot from given choices </li>
+            <li> Almost Done !, Enter your desired records and columns to see you beautiful graph </li>
+            </strong>
+        </ol>
+    </div>
+</div>
+
+   <div class=" row justify-content-md-center">
+     <div class="col-6 offset-4">
+        <h2><span class="mt-4 border badge badge-white">  <a href="{% url 'upload_file' %}"> Start Here </a>  </span></h2>
+     </div>
+   </div>
+
 
 {% endblock %}

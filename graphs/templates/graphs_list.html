@@ -1,6 +1,97 @@
-<h3>Select appropriate graph </h3>
+{% extends 'base.html' %}
+{% load static %}
 
-<h2><a href="{% url 'line_graph' %}">Line graph</a></h2>
-<h2><a>Bar graph</a></h2>
-<h2><a>Pie graph</a></h2>
-<h2><a>Scatter graph</a></h2>
+{% block content2 %}
+
+<h2 class="text-center"> Select Appropriate Graph  </h2>
+
+<div class=" mt-5 row">
+
+   <div class="col-3 offset-md-1">
+        <div class="card">
+              <div class="card-header bg-warning text-center">
+                Line Graph
+              </div>
+              <img class="card-img-top" src="{% static 'images/line.jpg' %}" />
+              <div class="card-footer bg-info text-center">
+                  <h4><a class="text-white" href="{% url 'line_graph' %}"> Select </a></h4>
+              </div>
+        </div>
+   </div>
+
+
+  <div class="col-3 ">
+        <div class="card">
+              <div class="card-header bg-warning text-center">
+                Bar Graph
+              </div>
+              <img class="card-img-top" src="{% static 'images/bar.jpg' %}" />
+              <div class="card-footer bg-info text-center">
+                  <h4><a class="text-white" href="{% url 'bar_graph' %}"> Select </a></h4>
+              </div>
+        </div>
+   </div>
+
+  <div class="col-3 ">
+        <div class="card">
+              <div class="card-header bg-warning text-center">
+                Pie Graph
+              </div>
+              <img class="card-img-top" src="{% static 'images/pie.png' %}" />
+              <div class="card-footer bg-info text-center">
+                  <h4><a class="text-white" href="{% url 'pie_graph' %}"> Select </a></h4>
+              </div>
+        </div>
+   </div>
+
+</div>
+
+<div class=" mt-5 row">
+
+   <div class="col-3 offset-md-1">
+        <div class="card">
+              <div class="card-header bg-warning text-center">
+                Histogram
+              </div>
+              <img class="card-img-top" src="{% static 'images/histogram.jpg' %}" />
+              <div class="card-footer bg-info text-center">
+                  <h4><a class="text-white" href="{% url 'histogram' %}"> Select </a></h4>
+              </div>
+        </div>
+   </div>
+
+
+  <div class="col-3 ">
+        <div class="card">
+              <div class="card-header bg-warning text-center">
+                Scatter Graph
+              </div>
+              <img class="card-img-top" src="{% static 'images/scatter.jpg' %}" />
+              <div class="card-footer bg-info text-center">
+                  <h4><a class="text-white" href="{% url 'scatter_graph' %}"> Select </a></h4>
+              </div>
+        </div>
+   </div>
+
+  <div class="col-3 ">
+        <div class="card">
+              <div class="card-header bg-warning text-center">
+                Box plot
+              </div>
+              <img class="card-img-top" src="{% static 'images/boxplot.jpg' %}" />
+              <div class="card-footer bg-info text-center">
+                  <h4><a class="text-white" href="{% url 'box_plot' %}"> Select </a></h4>
+              </div>
+        </div>
+   </div>
+
+</div>
+
+<div class="mt-5 row justify-content-md-center breadcrumb">
+    <div class="border col-2">
+        <h5><a href="{% url 'showresult' %}">Back to see Result </a></h5>
+    </div>
+</div>
+
+
+{% endblock %}

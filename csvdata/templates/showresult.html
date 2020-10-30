@@ -1,17 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>RESULT</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load  static %}
 
-<h1> Output from given CSV data </h1>
+{% block content2 %}
 
-<p><b>Total Records:</b> {{ totalrecords }}</p>
-<p><b>Total Columns:</b> {{ totalcols }}</p>
-<p><b>All columns list:</b> {{ allcols }}</p>
+<div class="dataresult-div">
+    <h2 class="text-center"> Here is the details of your CSV file title : {{ filetitle }} </h2>
+    <div class="m-4">
+        <p><b>Total Records:</b> {{ totalrecords }}</p>
+        <p><b>Total Columns:</b> {{ totalcols }}</p>
+        <p><b>All columns list:</b> {{ allcols }}</p>
+    </div>
+</div>
 
-<h3><a href="{% url 'graphs_list' %}">See Graphs plot</a></h3>
-</body>
-</html>
+
+<div class="mt-5 row justify-content-md-center breadcrumb">
+    <div class="border col-2">
+        <h5><a href="{% url 'graphs_list' %}">See Graphs List </a></h5>
+    </div>
+    <div class="border col-3">
+        <h5><a href="{% url 'upload_file' %}">Upload another CSV file</a></h5>
+    </div>
+</div>
+
+{% endblock %}
