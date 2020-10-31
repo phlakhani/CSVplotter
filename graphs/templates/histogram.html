@@ -1,25 +1,26 @@
 {% extends 'base.html' %}
 
 {% block content2 %}
+<h3><a href="{% url 'graphs_list' %}">Go to graphs list</a></h3>
 
-<h1>Line Graph</h1>
+<h1>Histogram</h1>
 <h3>Choose parameters from below:  </h3>
 <p> Total Records: {{ totalrecords }}</p>
 <p> Available Columns: {{ allcols }}</p>
 
 <form method="POST" >
     {% csrf_token %}
-    <label> Records range :</label><input type="text" name="rangeNo" placeholder="  start:stop"  required="">
-    <label> X-axis :</label><input type="text"  name="x_axis" required="">
-    <label> Y-axis :</label><input type="text"  name="y_axis" required="">
+    <label> Records Range :</label><input type="text" name="rangeNo" placeholder="  start:stop" required="">
+    <label> Column Dataset :</label><input type="text"  name="hist_array" required="">
+    <label> Max. Desired Bins :</label><input type="text"  name="bin_size" required="">
     <input type="submit" value="submit">
 </form>
 
 <div>
+
       {% autoescape off %}
           {{ plot_div }}
       {% endautoescape %}
-
 </div>
 
 <div class="mt-5 row justify-content-md-center breadcrumb">

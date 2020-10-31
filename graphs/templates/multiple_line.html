@@ -2,7 +2,7 @@
 
 {% block content2 %}
 
-<h1>Box Plot</h1>
+<h1>Multiple Line Graphs</h1>
 <h3>Choose parameters from below:  </h3>
 <p> Total Records: {{ totalrecords }}</p>
 <p> Available Columns: {{ allcols }}</p>
@@ -10,14 +10,17 @@
 <form method="POST" >
     {% csrf_token %}
     <label> Records Range :</label><input type="text" name="rangeNo" placeholder="  start:stop" required="" >
-    <label> Plot-1 :</label><input type="text"  name="plot_1" required="">
-    <label> Plot-2 :</label><input type="text"  name="plot_2" required="">
+    <label> X-axis :</label><input type="text"  name="x_axis" required="" >
+    <label> Graph1_Y :</label><input type="text"  name="y_g1" required="" >
+    <label> Graph2_Y :</label><input type="text"  name="y_g2" required="" >
+    <label> Graph3_Y :</label><input type="text"  name="y_g3" required="" >
+    <label> Graph4_Y :</label><input type="text"  name="y_g4" required="" >
     <input type="submit" value="submit">
 </form>
 
 <div>
-
       {% autoescape off %}
+     <span style="align:center">{{ graphtitle }}</span>
           {{ plot_div }}
       {% endautoescape %}
 </div>
@@ -28,6 +31,6 @@
     </div>
 </div>
 
+
 {% endblock %}
 
-</html>

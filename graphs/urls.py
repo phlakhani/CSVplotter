@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import home, LineGraph, BarGraph, PieGraph, Histogram, ScatterGraph, BoxPlot
+from .views import home, LineGraph, BarGraph, PieGraph, Histogram, ScatterGraph, \
+                   BoxPlot, BubblePlot, MultipleLine, HorizontalBar
 
 
 
@@ -11,4 +12,7 @@ urlpatterns = [
     path('histogram/', Histogram, name='histogram'),
     path('scatter_graph/', ScatterGraph, name='scatter_graph'),
     path('box_plot/', BoxPlot, name='box_plot'),
+    path('bubble_plot/', BubblePlot, name='bubble_plot'),
+    path('multiple_line/', MultipleLine, name='multiple_line'),
+    path('horizontal_bar/', HorizontalBar, name='horizontal_bar'),
    ]

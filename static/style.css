@@ -1,0 +1,22 @@
+.top-div{
+   text-align:center;
+   background-color: blue;
+   width: 80%;
+   margin: auto
+}
+
+.form-div{
+    background-color:#f4e6f7;
+    height: 350px;
+}
+
+.dataresult-div{
+    background-color: #d3e3e8;
+    width: 100%;
+    margin: auto;
+    height: 400px;
+}
+
+.nav-div{
+  background-color:#74a7c4;
+}

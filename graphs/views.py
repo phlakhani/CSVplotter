@@ -1,6 +1,5 @@
-import plotly
 import plotly.graph_objs as go
-
+from plotly.subplots import make_subplots
 from django.shortcuts import render
 from csvdata.dataprocess import exportCSVdata
 # Create your views here.
@@ -242,5 +241,173 @@ def BoxPlot(request):
                    'allcols': allcols
                    }
         return render(request, 'box_plot.html', context)
+
+def BubblePlot(request):
+    dataset = exportCSVdata()
+    allcols = list(dataset.columns)
+    totalrecords = dataset.shape[0]
+
+    if request.method == 'POST':
+        x_data_string = request.POST['rangeNo'].strip()
+        for i in x_data_string:
+            if i == ':':
+                k = x_data_string.index(i)
+                x_1strange = int(x_data_string[:k])
+                x_2strange = int(x_data_string[k + 1:])
+
+        dim1_data = request.POST['dim_1'].strip()
+        dim2_data = request.POST['dim_2'].strip()
+        dim3_data = request.POST['dim_3'].strip()
+        dim1_plot = dataset[x_1strange:x_2strange][dim1_data]
+        dim2_plot = dataset[x_1strange:x_2strange][dim2_data]
+        dim3_plot = dataset[x_1strange:x_2strange][dim3_data]
+
+        bubble = go.Scatter(mode='markers', x=dim1_plot, y=dim2_plot, marker=dict(size=dim3_plot,color=dim3_plot,showscale=True))
+
+        layout = go.Layout(title=f"Bubble Plot: x-{dim1_data} y-{dim2_data} & size-x-{dim3_data} ")
+
+        fig = go.Figure(data=[bubble], layout=layout)
+        plt_div = fig.to_html(full_html=True)
+
+        context = {'totalrecords': totalrecords,
+                   'allcols': allcols,
+                   'plot_div': plt_div
+                   }
+
+        return render(request, 'bubble_plot.html', context)
+    else:
+        context = {'totalrecords': totalrecords,
+                   'allcols': allcols
+                   }
+        return render(request, 'bubble_plot.html', context)
+
+
+def MultipleLine(request):
+    dataset = exportCSVdata()
+    allcols = list(dataset.columns)
+    totalrecords = dataset.shape[0]
+
+    if request.method == 'POST':
+        x_data_string = request.POST['rangeNo'].strip()
+        for i in x_data_string:
+            if i == ':':
+                k = x_data_string.index(i)
+                x_1strange = int(x_data_string[:k])
+                x_2strange = int(x_data_string[k + 1:])
+
+        x_data = request.POST['x_axis'].strip()
+        y_g1 = request.POST['y_g1'].strip()
+        y_g2 = request.POST['y_g2'].strip()
+        y_g3 = request.POST['y_g3'].strip()
+        y_g4 = request.POST['y_g4'].strip()
+        x_plot = dataset[x_1strange:x_2strange][x_data]
+        y_g1_plot = dataset[x_1strange:x_2strange][y_g1]
+        y_g2_plot = dataset[x_1strange:x_2strange][y_g2]
+        y_g3_plot = dataset[x_1strange:x_2strange][y_g3]
+        y_g4_plot = dataset[x_1strange:x_2strange][y_g4]
+
+        fig = make_subplots(rows=2, cols=2)
+        fig.add_trace(
+            go.Scatter(x=x_plot, y=y_g1_plot, name=f"{y_g1}"),
+            row=1, col=1)
+
+        fig.add_trace(
+            go.Scatter(x=x_plot, y=y_g2_plot, name=f"{y_g2}"),
+            row=1, col=2
+        )
+
+        fig.add_trace(
+            go.Scatter(x=x_plot, y=y_g3_plot, name=f"{y_g3}"),
+            row=2, col=1
+        )
+
+        fig.add_trace(
+            go.Scatter(x=x_plot, y=y_g4_plot, name=f"{y_g4}"),
+            row=2, col=2
+        )
+        fig.update_layout(title=f'Multiple Line Graphs: X_axis:{x_data} ')
+
+        plt_div = fig.to_html(full_html=True)
+
+        context = {'totalrecords': totalrecords,
+                   'allcols': allcols,
+                   'plot_div': plt_div
+                   }
+
+        return render(request, 'multiple_line.html', context)
+    else:
+        context = {'totalrecords': totalrecords,
+                   'allcols': allcols
+                   }
+        return render(request, 'multiple_line.html', context)
+
+def HorizontalBar(request):
+    dataset = exportCSVdata()
+    allcols = list(dataset.columns)
+    totalrecords = dataset.shape[0]
+
+    if request.method == 'POST':
+        x_data_string = request.POST['rangeNo'].strip()
+        for i in x_data_string:
+            if i == ':':
+                k = x_data_string.index(i)
+                x_1strange = int(x_data_string[:k])
+                x_2strange = int(x_data_string[k + 1:])
+
+        y_data = request.POST['y_axis'].strip()
+        x_1 = request.POST['x_1'].strip()
+        x_2 = request.POST['x_2'].strip()
+        x_3 = request.POST['x_3'].strip()
+
+        y_plot = dataset[x_1strange:x_2strange][y_data]
+        x_1plot = dataset[x_1strange:x_2strange][x_1]
+        x_2plot = dataset[x_1strange:x_2strange][x_2]
+        x_3plot = dataset[x_1strange:x_2strange][x_3]
+
+        fig = go.Figure()
+        fig.add_trace(go.Bar(
+            y=y_plot,
+            x=x_1plot,
+            name='x1',
+            orientation='h',
+            marker=dict(
+                color='rgba(246, 78, 139, 0.6)')
+        )
+        )
+        fig.add_trace(go.Bar(
+            y=y_plot,
+            x=x_2plot,
+            name='x2',
+            orientation='h',
+            marker=dict(
+                color='rgba(58, 71, 80, 0.6)')
+        )
+        )
+
+        fig.add_trace(go.Bar(
+            y=y_plot,
+            x=x_3plot,
+            name='x3',
+            orientation='h',
+            marker=dict(
+                color='rgba(25, 71, 45, 0.6)')
+        )
+        )
+
+        fig.update_layout(barmode='stack')
+
+        plt_div = fig.to_html(full_html=True)
+
+        context = {'totalrecords': totalrecords,
+                   'allcols': allcols,
+                   'plot_div': plt_div
+                   }
+
+        return render(request, 'horizontal_bar.html', context)
+    else:
+        context = {'totalrecords': totalrecords,
+                   'allcols': allcols
+                   }
+        return render(request, 'horizontal_bar.html', context)
 
 

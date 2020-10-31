@@ -2,21 +2,24 @@
 
 {% block content2 %}
 
-<h1>Line Graph</h1>
+<h1>Pie Graph</h1>
 <h3>Choose parameters from below:  </h3>
 <p> Total Records: {{ totalrecords }}</p>
 <p> Available Columns: {{ allcols }}</p>
 
 <form method="POST" >
     {% csrf_token %}
-    <label> Records range :</label><input type="text" name="rangeNo" placeholder="  start:stop"  required="">
-    <label> X-axis :</label><input type="text"  name="x_axis" required="">
-    <label> Y-axis :</label><input type="text"  name="y_axis" required="">
+    <label> Records Range :</label><input type="text" name="rangeNo" placeholder="  start:stop" required="">
+    <label> Field :</label><input type="text"  name="categories" required="">
+    <label> Field Values :</label><input type="text"  name="values" required="">
     <input type="submit" value="submit">
 </form>
 
 <div>
+
+
       {% autoescape off %}
+     <span style="align:center">{{ graphtitle }}</span>
           {{ plot_div }}
       {% endautoescape %}
 
@@ -29,3 +32,5 @@
 </div>
 
 {% endblock %}
+
+</html>

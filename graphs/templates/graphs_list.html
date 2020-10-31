@@ -87,6 +87,51 @@
 
 </div>
 
+
+
+<div class=" mt-5 row">
+
+   <div class="col-3 offset-md-1">
+        <div class="card">
+              <div class="card-header bg-warning text-center">
+                Bubble Plot
+              </div>
+              <img class="card-img-top" src="{% static 'images/bubble.jpg' %}" />
+              <div class="card-footer bg-info text-center">
+                  <h4><a class="text-white" href="{% url 'bubble_plot' %}"> Select </a></h4>
+              </div>
+        </div>
+   </div>
+
+
+  <div class="col-3 ">
+        <div class="card">
+              <div class="card-header bg-warning text-center">
+                Multiple Line Graphs
+              </div>
+              <img class="card-img-top" src="{% static 'images/multiple.jpg' %}" />
+              <div class="card-footer bg-info text-center">
+                  <h4><a class="text-white" href="{% url 'multiple_line' %}"> Select </a></h4>
+              </div>
+        </div>
+   </div>
+
+  <div class="col-3 ">
+        <div class="card">
+              <div class="card-header bg-warning text-center">
+                Horizontal Stacked Bar Graph
+              </div>
+              <img class="card-img-top" src="{% static 'images/horizontal_bar.jpg' %}" />
+              <div class="card-footer bg-info text-center">
+                  <h4><a class="text-white" href="{% url 'horizontal_bar' %}"> Select </a></h4>
+              </div>
+        </div>
+   </div>
+
+</div>
+
+
+
 <div class="mt-5 row justify-content-md-center breadcrumb">
     <div class="border col-2">
         <h5><a href="{% url 'showresult' %}">Back to see Result </a></h5>
