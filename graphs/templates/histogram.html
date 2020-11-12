@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content2 %}
-<h3><a href="{% url 'graphs_list' %}">Go to graphs list</a></h3>
 
-<h1>Histogram</h1>
-<h3>Choose parameters from below:  </h3>
+<h2 class="text-center">Histogram</h2>
+<h4>Choose parameters from below:  </h4>
 <p> Total Records: {{ totalrecords }}</p>
 <p> Available Columns: {{ allcols }}</p>
 
@@ -25,7 +24,7 @@
 
 <div class="mt-5 row justify-content-md-center breadcrumb">
     <div class="border col-2">
-        <h5><a href="{% url 'graphs_list' %}">See Graphs List </a></h5>
+        <h5><a href="{% url 'graphs_list' %}">Select another Graph </a></h5>
     </div>
 </div>
 
