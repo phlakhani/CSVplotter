@@ -5,7 +5,7 @@ temp = pd.DataFrame(data=d)   # dummy dataframe to avoid data type error
 
 def handle_uploaded_file(f):
     global temp
-    df = pd.read_csv(f)
+    df = pd.read_csv(f, encoding='latin1')
     temp = df
 
 
